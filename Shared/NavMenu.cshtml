@@ -1,0 +1,7 @@
+﻿<span class="badge badge-pill badge-primary" onclick="@(async e => await Fetch(Gallery.Landscape))">Imaginary Landscapes</span>
+<span class="badge badge-pill badge-primary" onclick="@(async e => await Fetch(Gallery.Art))">Art</span>
+
+@functions{
+    [ParameterAttribute] 
+    protected Func<Gallery, Task> Fetch { get; set; }
+}

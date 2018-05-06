@@ -1,5 +1,5 @@
 ﻿@page "/"
-
+@inject HttpClient Http
 @if(Posts != null)
 {
     @foreach(var post in Posts)
@@ -11,8 +11,9 @@
 @functions{
     List<Post> Posts{get;set;}
 
-    protected override void OnInit()
+    protected override async Task OnInitAsync()
     {
-        
+        var response = await Http.GetJsonAsync<RedditResponse>("https://www.reddit.com/r/Art.json");
+        Posts = response.Posts;        
     }
 }

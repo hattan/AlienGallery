@@ -1,38 +1,3 @@
 ﻿@page "/"
-@inject HttpClient Http
 
-<div class="row gallery-main">
-    @if(Posts != null)
-    {
-        @foreach(var post in Posts)
-        {
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="@post.ImageUrl" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">@post.Title</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>     
-        }
-    }
-    else
-    {
-        <h2>Loading...</h2>
-    }
-</div>
-
-@functions{
-    List<Post> Posts{get;set;}
-
-    protected override async Task OnInitAsync()
-    {
-        var response = await Http.GetJsonAsync<RedditResponse>("https://www.reddit.com/r/Art.json");
-        Posts = response.Posts;        
-    }
-}
+<PostList />

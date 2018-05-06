@@ -1,6 +1,18 @@
 ﻿@page "/"
 
+@if(Posts != null)
+{
+    @foreach(var post in Posts)
+    {
+        <h1>@post.Title</h1>
+    }
+}
 
 @functions{
-   
+    List<Post> Posts{get;set;}
+
+    protected override void OnInit()
+    {
+        
+    }
 }

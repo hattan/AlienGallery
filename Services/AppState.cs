@@ -11,6 +11,7 @@ namespace aliengallery.Services
     public class AppState
     {
         public List<Post> Posts{get;set;}
+        public int Limit{get;set;}=10;
         public event Action OnChange;
         private readonly HttpClient http;
 
@@ -30,6 +31,7 @@ namespace aliengallery.Services
                 Posts = response.Posts;         
                 Cache.Set(gallery,Posts);
             }         
+            Posts=Posts.Take(Limit).ToList();
             NotifyStateChanged();
         }
 

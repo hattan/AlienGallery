@@ -5,6 +5,7 @@
 
 <Count Posts=state.Posts />
 
+<input type="text"  bind="@state.Limit" onchange="@Foo" />
 <PostList Posts=state.Posts  />
 
 @functions{
@@ -12,5 +13,10 @@
     {
         state.OnChange += StateHasChanged;
         await state.FetchPosts(Gallery.Art);
+    }
+
+    public void Foo()
+    {
+        Console.WriteLine(state.Limit);
     }
 }

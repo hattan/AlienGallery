@@ -1,0 +1,11 @@
+@if(Posts!=null)
+{
+    <button type="button" class="btn btn-info count-btn">
+    Posts <span class="badge badge-light">@Posts.Count()</span>
+    </button>
+}
+
+@functions{
+    [Parameter]
+    List<Post> Posts{get;set;}
+}

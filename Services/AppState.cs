@@ -28,9 +28,9 @@ namespace aliengallery.Services
                 var url = GetUrl(gallery);
                 var response = await http.GetJsonAsync<RedditResponse>(url);
                 Posts = response.Posts;         
-
-                NotifyStateChanged();
+                Cache.Set(gallery,Posts);
             }         
+            NotifyStateChanged();
         }
 
         private string GetUrl(Gallery gallery)

@@ -19,7 +19,27 @@ namespace aliengallery.Services
             http = httpInstance;
         }
 
+        public async Task FetchPosts(Gallery gallery)
+        {         
+            var url = GetUrl(gallery);
+            var response = await http.GetJsonAsync<RedditResponse>(url);
+            Posts = response.Posts;         
 
+            NotifyStateChanged();
+        }
+
+        private string GetUrl(Gallery gallery)
+        {
+            switch(gallery)
+            {
+                case Gallery.Art:
+                return "https://www.reddit.com/r/art.json";
+                case Gallery.Landscape:
+                return "https://www.reddit.com/r/imaginarylandscapes.json";
+            }
+            return null;
+        }
+        
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 

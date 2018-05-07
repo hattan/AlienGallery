@@ -1,11 +1,12 @@
 ﻿@page "/"
 @inject AppState state
 
-<PostList />
+<PostList Posts=state.Posts  />
 
 @functions{
     protected override async Task OnInitAsync() 
     {
         state.OnChange += StateHasChanged;
+        await state.FetchPosts(Gallery.Art);
     }
 }

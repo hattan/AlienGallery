@@ -34,7 +34,7 @@ namespace aliengallery.Models
         {
             get
             {
-                return data.preview.images[0].source.url;
+                return data?.preview?.images[0]?.source?.url;
             }
         }
         public string Thumbnail 
@@ -56,6 +56,7 @@ namespace aliengallery.Models
     public class PostDetails
     {
         public string id{get;set;}
+        public bool is_self{get;set;}
         public string title{get;set;}
         public string thumbnail { get; set; }
         public int? thumbnail_height { get; set; }

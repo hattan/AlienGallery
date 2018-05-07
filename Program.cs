@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Blazor.Browser.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-
+using aliengallery.Services;
 
 namespace aliengallery
 {
@@ -12,6 +12,7 @@ namespace aliengallery
         {
             var serviceProvider = new BrowserServiceProvider(services =>
             {
+                 services.AddSingleton<AppState>();
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");

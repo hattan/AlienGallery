@@ -1,6 +1,8 @@
 ﻿@page "/"
 @inject AppState state
 
+<NavMenu Fetch=state.FetchPosts />
+
 <PostList Posts=state.Posts  />
 
 @functions{

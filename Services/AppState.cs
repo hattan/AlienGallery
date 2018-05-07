@@ -20,12 +20,17 @@ namespace aliengallery.Services
         }
 
         public async Task FetchPosts(Gallery gallery)
-        {         
-            var url = GetUrl(gallery);
-            var response = await http.GetJsonAsync<RedditResponse>(url);
-            Posts = response.Posts;         
+        {
+            Posts = Cache.Get(gallery);
+            
+            if(Posts==null)
+            {
+                var url = GetUrl(gallery);
+                var response = await http.GetJsonAsync<RedditResponse>(url);
+                Posts = response.Posts;         
 
-            NotifyStateChanged();
+                NotifyStateChanged();
+            }         
         }
 
         private string GetUrl(Gallery gallery)
@@ -39,7 +44,7 @@ namespace aliengallery.Services
             }
             return null;
         }
-        
+
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 
